@@ -7,6 +7,9 @@
 # Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
 #!/bin/bash
 
+#更改默认地址为192.168.10.12
+sed -i 's/192.168.1.1/192.168.10.12/g' package/base-files/files/bin/config_generate
+
 #Linkease
 git clone --depth=1 --single-branch https://github.com/linkease/istore.git
 git clone --depth=1 --single-branch https://github.com/linkease/nas-packages.git
