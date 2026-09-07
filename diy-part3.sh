@@ -42,8 +42,7 @@ git clone --depth=1 --single-branch https://github.com/linkease/nas-packages-luc
 #git clone https://github.com/hza81007155/luci-app-partexp
 
 # Argone theme
-git clone --depth=1 -b master https://github.com/hza81007155/luci-theme-argon package/luci-theme-argon
-git clone --depth=1 -b master https://github.com/hza81007155/luci-app-argon-config package/luci-app-argon-config
+git clone https://github.com/eamonxg/luci-theme-aurora.git package/luci-theme-aurora
 
 # ddns-go
 git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-ddns-go.git
