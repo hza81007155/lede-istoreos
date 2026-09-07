@@ -16,3 +16,15 @@
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+#!/bin/bash
+
+#增加主题
+echo "CONFIG_PACKAGE_luci-theme-argon=y" >> .config
+echo "CONFIG_PACKAGE_luci-app-argon-config=y" >> .config
+
+#根据源码来修改
+if [[ $OWRT_URL != *"lede"* ]] ; then
+  #增加luci界面
+  echo "CONFIG_PACKAGE_luci=y" >> .config
+  echo "CONFIG_LUCI_LANG_zh_Hans=y" >> .config
+fi
