@@ -31,12 +31,12 @@ sed -i 's/192.168.1.1/192.168.10.12/g' package/base-files/files/bin/config_gener
 # 修改版本为编译日期
 date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-sed -i "s/${orig_version}/R${date_version} by hza800755/g" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/${orig_version}/R${date_version} by hza800755 /g" package/lean/default-settings/files/zzz-default-settings
 
-#Linkease
-git clone --depth=1 --single-branch https://github.com/linkease/istore.git
-git clone --depth=1 --single-branch https://github.com/linkease/nas-packages.git
-git clone --depth=1 --single-branch https://github.com/linkease/nas-packages-luci.git  
+# istore
+git clone --depth=1 -b main https://github.com/linkease/nas-packages-luci package/nas-packages-luci
+git clone --depth=1 -b master https://github.com/linkease/nas-packages package/nas-packages
+git clone --depth=1 -b main https://github.com/linkease/istore package/istore
 
 # partexp 扩容分区
 #git clone https://github.com/hza81007155/luci-app-partexp
