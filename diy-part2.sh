@@ -7,16 +7,36 @@
 # Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
 #!/bin/bash
 
+# 移除要替换的包
+rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/applications/luci-app-argon-config
+rm -rf feeds/luci/applications/luci-app-passwall
+rm -rf feeds/luci/applications/luci-app-passwall2
+rm -rf feeds/luci/applications/luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/luci/applications/luci-app-lucky
+rm -rf feeds/luci/applications/luci-app-wol
+rm -rf feeds/luci/applications/luci-app-vlmcsd
+rm -rf feeds/luci/applications/luci-app-accesscontrol
+rm -rf feeds/packages/net/chinadns-ng
+rm -rf feeds/packages/net/geoview
+rm -rf feeds/packages/net/sing-box
+rm -rf feeds/packages/net/xray-core
+rm -rf feeds/packages/net/lucky
+rm -rf feeds/packages/utils/coremark
+
 #更改默认地址为192.168.10.12
 sed -i 's/192.168.1.1/192.168.10.12/g' package/base-files/files/bin/config_generate
+
+# 修改版本为编译日期
+date_version=$(date +"%y.%m.%d")
+orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+sed -i "s/${orig_version}/R${date_version} by hza800755/g" package/lean/default-settings/files/zzz-default-settings
 
 #Linkease
 git clone --depth=1 --single-branch https://github.com/linkease/istore.git
 git clone --depth=1 --single-branch https://github.com/linkease/nas-packages.git
 git clone --depth=1 --single-branch https://github.com/linkease/nas-packages-luci.git  
-
-# R4S机型调整网口,wan/lan对调，以适配T4机型
-#sed -i "s,'eth1' 'eth0','eth0' 'eth1',g" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 
 # partexp 扩容分区
 #git clone https://github.com/hza81007155/luci-app-partexp
@@ -25,21 +45,15 @@ git clone --depth=1 --single-branch https://github.com/linkease/nas-packages-luc
 git clone --depth=1 -b master https://github.com/hza81007155/luci-theme-argon package/luci-theme-argon
 git clone --depth=1 -b master https://github.com/hza81007155/luci-app-argon-config package/luci-app-argon-config
 
-# dockerman
-git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-dockerman.git
-
 # ddns-go
-# git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-ddns-go.git
+git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-ddns-go.git
+
+#luci-app-mosdns
+git clone --depth=1 --single-branch https://github.com/sbwml/luci-app-mosdns.git
 
 # passwall/passwall2
 git clone --depth=1 --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall.git
-#git clone --depth=1 --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall2.git
-
-#luci-app-mosdns
-#git clone --depth=1 --single-branch https://github.com/sbwml/luci-app-mosdns.git
-
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+git clone --depth=1 --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall2.git
 
 # 移除 openwrt feeds 自带的核心库
 rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,v2ray-plugin,xray-plugin,geoview,shadow-tls}
