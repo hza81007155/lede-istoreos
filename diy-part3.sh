@@ -36,6 +36,10 @@ sed -i "s/${orig_version}/R${date_version} by hza800755 /g" package/lean/default
 # git clone kenzok8仓库
 git clone --depth=1 --single-branch https://github.com/kenzok8/small-package.git
 
+# luci-theme-aurora主题
+git clone https://github.com/eamonxg/luci-theme-aurora.git package/luci-theme-aurora
+git clone https://github.com/eamonxg/luci-app-aurora-config.git package/luci-app-aurora-config
+
 #预置OpenClash内核和GEO数据
 export CORE_VER=https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/core_version
 export CORE_TUN=https://github.com/vernesong/OpenClash/raw/core/dev/premium/clash-linux
