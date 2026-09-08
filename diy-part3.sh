@@ -34,8 +34,7 @@ orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | 
 sed -i "s/${orig_version}/R${date_version} by hza800755 /g" package/lean/default-settings/files/zzz-default-settings
 
 # git clone kenzok8仓库
-git clone --depth=1 --single-branch https://github.com/kenzok8/small.git
-git clone --depth=1 --single-branch https://github.com/kenzok8/openwrt-packages.git
+git clone --depth=1 --single-branch https://github.com/kenzok8/small-package.git
 
 #预置OpenClash内核和GEO数据
 export CORE_VER=https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/core_version
